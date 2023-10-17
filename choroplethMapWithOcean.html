@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  <style>
+    h1 {
+      font-family: "Times New Roman", Times, serif;
+    }
+    h2 {
+      font-family: "Times New Roman", Times, serif;
+    }
+    p {
+    font-family: "Arial", sans-serif;
+  }
+  </style>
+</head>
+<body>
+
+      <div style="text-align: center;">
+        <h1 style="margin-bottom: 10px; background-color:red; font-size: 70px;color: white;">Pandemic Unmasked: Navigating COVID-19</h1>
+        <br>
+      </div>
+      <div style="text-align: center;">
+          <h2 style="font-size: 40px;">COVID-19 around the world</h2> 
+          <br>
+        </div>
+      <div style="text-align: center;">
+        <div id="vis">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: center;">
+          <p style="font-size: 20px;text-align: justify">
+            Based on the chart above, you'll find a world map displaying COVID-19 statistics. It shows the number of COVID-19 Deaths and Confirmed Cases per 10,000 people for each country. Some countries are highlighted in <span style='color: #a63603; font-weight: bold;'>dark red</span> to signify high confirmed cases while <span style='color: #fdbe85; font-weight: bold;'>light orange</span> is represent low confirmed cases. Notably, countries like Chile, Argentina, Peru, Colombia, Spain, and Oman have a high number of confirmed cases per 10,000 people. However, remember that these numbers can be misleading without considering the population size of each country.
+          </p>
+        </div>
+      <div style="text-align: center;">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <h2 style="font-size: 40px;">Relationship between COVID-19 Confirmed and Deaths Cases</h2>
+          <br>
+          <br>
+        </div>
+      <div style="text-align: center;">
+        <div id="vis1"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div style="text-align: center;">
+        <p style="font-size: 20px;text-align: justify">
+          The scatterplot indicates a clear connection between the number of confirmed COVID-19 cases and the number of COVID-19 related deaths in different countries. Specifically, it shows that countries with a higher number of confirmed cases tend to have a higher number of deaths, suggesting a positive relationship between confirmed cases and deaths. Notably, the size of a country's population, such as in the cases of China and India, doesn't necessarily correlate with having the highest number of cases or deaths. To mitigate any potential misinterpretation, it's essential to normalize the data, adjusting for population size. The United States has the highest number of both confirmed cases and deaths, while Western Sahara has the lowest figures for both metrics.
+        </p>
+      </div>
+      <div style="text-align: center;">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      
+        <h2 style="font-size: 40px;">COVID-19 Confirmed and Deaths Cases for each country</h2>
+        <div id="vis2"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <p style="font-size: 20px;text-align: justify">
+        The bar chart depicted above offers the ability to select a specific country. Consequently, it filters out countries that are not relevant and exclusively presents COVID-19 information for the chosen country. Within this chart, the length of the bars signifies the total number of confirmed COVID-19 cases, while the legend provides details regarding the total number of deaths in that country. Notably, a longer bar indicates a higher number of confirmed cases in the selected country.
+      </p>
+      <br>
+  <script type="text/javascript">
+    var specvis = "./map.vg.json";
+    var specvis1 = "./scatterplot.vg.json";
+    var specvis2 = "./barchart.vg.json";
+    vegaEmbed('#vis', specvis);
+
+    vegaEmbed('#vis1', specvis1);
+
+    vegaEmbed('#vis2', specvis2);
+  </script>
+</body>
+</html>

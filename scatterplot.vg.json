@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "height": 500,
+  "width": 1200,
+  "data": {
+    "url": "https://raw.githubusercontent.com/bowensmalljj/FIT3179choro/main/covid_summary.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {"input": "range", "min": 0, "max": 100000000, "step": 1000000,"name": "Population Above"}
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Deaths > 0"},
+    {"filter": "datum.Population_Size > Population_Above"},
+    {"calculate": "datum.Confirmed / datum.Population_Size", "as": "Cases per 10,000 Population"}
+  ],
+  "layer": [
+    {
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "Confirmed",
+          "type": "quantitative",
+          "axis": {"title": "Confirmed Cases", "titleFontSize": 14, "tickCount": 7},
+          "scale": {"type": "log", "domain": [1, 10000000]}
+        },
+        "y": {
+          "field": "Deaths",
+          "type": "quantitative",
+          "axis": {"title": "Total Deaths", "titleFontSize": 14, "tickCount": 6},
+          "scale": {"type": "log", "domain": [1, 1000000]}
+        },
+        "size": {"field": "Population_Size", "type": "quantitative", "title": "Population Size","scale": {"range": [30, 500]}},
+        "stroke": {"value": "red"},
+        "tooltip": [
+          {"field": "Country_Region", "type": "nominal","title": "Country Region"},
+          {"field": "Confirmed", "type": "quantitative", "format": ","},
+          {"field": "Deaths", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "condition": {"test": "datum.Country_Region === 'India'", "value": "India"},
+          "value": ""
+        },
+        "x": {"field": "Confirmed", "type": "quantitative"},
+        "y": {"field": "Deaths", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "condition": {"test": "datum.Country_Region === 'China'", "value": "China"},
+          "value": ""
+        },
+        "x": {"field": "Confirmed", "type": "quantitative"},
+        "y": {"field": "Deaths", "type": "quantitative"}
+      }
+    }
+  ]
+}
